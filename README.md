@@ -6,11 +6,13 @@ The modification is done by [LeMaker](http://lemaker.org). The RPi.GPIO_BP API u
 You can donwload the RPi.GPIO_BP from:
 https://github.com/LeMaker/RPi.GPIO_BP.
 
+## Update 2017-01 bananapi branch is adapted to work with mainline kernel (4.8+)
+
 ## Download
 ### For Banana Pro
-    git clone https://github.com/LeMaker/RPi.GPIO_BP -b bananapro
+    git clone https://github.com/hcoohb/RPi.GPIO_BP -b bananapro
 ### For Banana Pi
-    git clone https://github.com/LeMaker/RPi.GPIO_BP -b bananapi
+    git clone https://github.com/hcoohb/RPi.GPIO_BP -b bananapi
 ## Installation
     sudo apt-get update
     sudo apt-get install python-dev
