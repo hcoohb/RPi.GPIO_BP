@@ -63,7 +63,10 @@ int epfd = -1;
 /***  change physToGpio_BP & pinTobcm_BP into physToGpioR3  ***/
 unsigned int gpioToSysPin(unsigned int gpio)
 {
-	int i;
+	// FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
+    return gpio;
+    
+    int i;
 	int lenBP = sizeof(physToGpioR3)/sizeof(int);
 	unsigned int gpioSys;
 	
@@ -82,7 +85,7 @@ int gpio_export(unsigned int gpio)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd, len;
-    char str_gpio[3];
+    char str_gpio[4]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    if ((fd = open("/sys/class/gpio/export", O_WRONLY)) < 0)
        return -1;
@@ -102,7 +105,7 @@ int gpio_unexport(unsigned int gpio)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd, len;
-    char str_gpio[3];
+    char str_gpio[4]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    if ((fd = open("/sys/class/gpio/unexport", O_WRONLY)) < 0)
         return -1;
@@ -121,7 +124,7 @@ int gpio_set_direction(unsigned int gpio, unsigned int in_flag)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
 	int fd;
-    char filename[33];
+    char filename[34]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d/direction", gpioSys);
 	if(lemakerDebug)
@@ -145,7 +148,7 @@ int gpio_set_edge(unsigned int gpio, unsigned int edge)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd;
-    char filename[28];
+    char filename[29]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d/edge", gpioSys);
 	 if(lemakerDebug)
@@ -163,7 +166,7 @@ int gpio_check(unsigned int gpio)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd;
-    char filename[23];
+    char filename[24]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d", gpioSys);
     if ((fd = open(filename, O_RDONLY)) < 0)
@@ -177,7 +180,7 @@ int gpio_set_value(unsigned int gpio, unsigned int value)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd;
-    char filename[29];
+    char filename[30]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d/value", gpioSys);
     if ((fd = open(filename, O_WRONLY)) < 0)
@@ -196,7 +199,7 @@ int gpio_get_value(unsigned int gpio)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd;
-    char filename[29];
+    char filename[30]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 	char buf;
 
 D    snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d/value", gpioSys);
@@ -218,7 +221,7 @@ int gpio_set_pull(unsigned int gpio, unsigned int value)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd;
-    char filename[29];
+    char filename[30]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
 D    snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d/pull", gpioSys);
     if ((fd = open(filename, O_WRONLY)) < 0)
@@ -239,7 +242,7 @@ int open_value_file(unsigned int gpio)
 {
 	unsigned int gpioSys = gpioToSysPin(gpio);
     int fd;
-    char filename[29];
+    char filename[30]; // FV 2017-01-12: For mainline kernel, use the gpio num (XXX)
 
     // create file descriptor of value file
 	snprintf(filename, sizeof(filename), "/sys/class/gpio/gpio%d/value", gpioSys);
